@@ -26,4 +26,3 @@ app.listen(process.env.PORT, (err) => {
   console.info('>'.repeat(40) + '\n')
 })
 
-//EN EL PACKAGE JSON. EN SCRIPTS, DAR LA MANERA DE FUNCIONAR AL USUARIO QUE LO USE, INDICANDOLO tb EN LA DOCUMENTACIÓN PERO NORMALMENTE "dev" : "nodemon index.js" HACER UNA INTERFACE PORQUE EL USUARIO NO TIENE PORQUE SABER SU FORMA DE ENTRAR .. EL USUARIO PONDRÁ npm run dev ---- (y  puedes tener mil scripts incluso con variables. "dev" : "ENVIRONMENT=DEV nodemon index.js")O UN "start" o un "bu¡ld" o "prod"
