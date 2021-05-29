@@ -10,7 +10,8 @@ function signUp (req, res) {
   const hashed_body = {
     name: req.body.name,
     email: req.body.email,
-    pwd: hashed_pwd
+    pwd: hashed_pwd,
+    admin: req.body.admin
   }
 
   usersModel.create(hashed_body)
