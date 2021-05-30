@@ -7,6 +7,7 @@ const wetsuitsSchema = new mongoose.Schema({
   },
   category: { 
     type: String, 
+    default: 'Wet-Suits'
   }, 
   brand: {
     type: String,
@@ -17,16 +18,16 @@ const wetsuitsSchema = new mongoose.Schema({
     enum: ['4', '6', '8', '10', '12', '14', '16', 'xs', 's', 'm', 'l', 'xl', '2xl', '4xl']
   },
   price: {
-    type: Number
-  },
-
-  students: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "students",  // mirar bien como brenda pone el nombre del modelo para escribir aqui el correcto
-    },
-  ]  
+    type: Number,
+    default: 'To consult'
+  }
+// METER LAS REFERENCIAS DE STUDENTS
+    
 })
 
 const wetsuitsModel = mongoose.model('wetsuits', wetsuitsSchema)
-module.exports = wetsuitsModel
+
+// module.exports = {
+  // wetsuitsModel,
+  // wetsuitsSchema
+// }

@@ -18,12 +18,9 @@ const usersSchema = new mongoose.Schema({
     type: String,
     enum: ['lateshift', 'earlyshift']
   },
-  students: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "students",  // mirar bien como brenda pone el nombre del modelo para escribir aqui el correcto
-    },
-  ],
+
+  // PONER EL mirar bien como brenda pone el nombre del modelo para escribir aqui el correcto
+      
   planning: {
     type: Date,
   },
@@ -33,7 +30,8 @@ const usersSchema = new mongoose.Schema({
   }
 })
 
-const usersModel = mongoose.model('users', usersSchema)
+const usersModel = mongoose.model('users', usersSchema);
+
 module.exports = usersModel
 
 //email: { type: String, set: toLower }
