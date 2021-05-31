@@ -2,11 +2,11 @@ const usersRouter = require('express').Router()
 const jwt = require('jsonwebtoken')
 const { getAllUsers, seeYourUser, seeOneUser, modifyUser, deleteUser } = require('../controllers/users.controller')
 
-usersRouter.get('/', auth, admin, getAllUsers) // SOLO PODRÍA VERLO EL ADMIN - HAY QUE HACERLO
-usersRouter.get('/me', auth,  seeYourUser)
-usersRouter.get('/:userId',auth, seeOneUser)
-usersRouter.put('/:userId',auth, modifyUser)
-usersRouter.delete('/:userId',auth, deleteUser)
+usersRouter.get('/', auth, admin, getAllUsers) 
+usersRouter.get('/me', auth, seeYourUser)
+usersRouter.get('/:userId',auth, admin, seeOneUser)
+usersRouter.put('/:userId',auth, admin, modifyUser)
+usersRouter.delete('/:userId',auth, admin, deleteUser)
 
 
 
@@ -32,7 +32,6 @@ function auth(req, res, next) {
 function admin(req, res, next) {
   console.log(res.locals.admin);
   if (!res.locals.admin) res.json('NO ADMIN') 
-  
   next() 
 }
 
