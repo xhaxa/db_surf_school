@@ -20,13 +20,12 @@ const surfTablesSchema = new mongoose.Schema({
     type: Number,
     default: 'To consult'
   },
-/*
   students: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "students",  // mirar bien como brenda pone el nombre del modelo para escribir aqui el correcto
+      ref: "students",
     }
-  ]  */
+  ]
 })
 
 const surfTablesModel = mongoose.model('surftables', surfTablesSchema)

@@ -20,9 +20,13 @@ const wetsuitsSchema = new mongoose.Schema({
   price: {
     type: Number,
     default: 'To consult'
-  }
-// METER LAS REFERENCIAS DE STUDENTS
-    
+  },
+  students: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "students",
+    }
+  ]    
 })
 
 const wetsuitsModel = mongoose.model('wetsuits', wetsuitsSchema)

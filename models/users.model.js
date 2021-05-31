@@ -19,9 +19,12 @@ const usersSchema = new mongoose.Schema({
     type: String,
     enum: ['lateshift', 'earlyshift']
   },
-
-  // PONER EL mirar bien como brenda pone el nombre del modelo para escribir aqui el correcto
-      
+  students: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "students",
+    }
+  ],      
   planning: {
     type: Date,
   },

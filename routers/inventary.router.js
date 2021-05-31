@@ -1,6 +1,6 @@
 const inventaryRouter = require('express').Router()
 const jwt = require('jsonwebtoken')
-const seeInventary  = require('../controllers/inventary.controller')
+const {seeInventary}  = require('../controllers/inventary.controller')
 
 inventaryRouter.get('/', seeInventary) 
 
