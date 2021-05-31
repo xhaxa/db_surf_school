@@ -1,4 +1,3 @@
-/*
 const inventaryRouter = require('express').Router()
 const jwt = require('jsonwebtoken')
 const seeInventary  = require('../controllers/inventary.controller')
@@ -28,4 +27,3 @@ function auth(req, res, next) {
 
 
 module.exports = inventaryRouter
-*/

@@ -27,7 +27,7 @@ const wetsuitsSchema = new mongoose.Schema({
 
 const wetsuitsModel = mongoose.model('wetsuits', wetsuitsSchema)
 
-// module.exports = {
-  // wetsuitsModel,
-  // wetsuitsSchema
-// }
+module.exports = {
+  wetsuitsModel,
+  wetsuitsSchema
+}

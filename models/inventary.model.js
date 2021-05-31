@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
-const wetsuitsSchema = require('./wetsuits.model') 
-const surfTablesSchema = require('./surftables.model')
+const {wetsuitsSchema} = require('./wetsuits.model') 
+const {surfTablesSchema} = require('./surftables.model')
 
 const inventarySchema = new mongoose.Schema({
   wetSuits: [wetsuitsSchema],

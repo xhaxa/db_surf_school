@@ -20,7 +20,8 @@ function signUp (req, res) {
       const insideToken = {
         name: user.name,
         id: user._id,
-        email: user.email
+        email: user.email,
+        admin: user.admin
       }
 
       const token = jwt.sign(
@@ -57,7 +58,8 @@ function login (req, res) {
           const insideToken = {
             name: user.name,
             email: user.email,
-            id: user._id
+            id: user._id,
+            admin: user.admin
           }
 
           const token = jwt.sign(

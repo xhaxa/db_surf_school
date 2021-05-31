@@ -8,7 +8,7 @@ const studentsRouter = require('./students.router')
 
 router.use('/auth', authRouter)
 router.use ('/users', usersRouter)
-//router.use ('/inventary', inventaryRouter)
+router.use ('/inventary', inventaryRouter)
 router.use('/students', studentsRouter)
 
 
