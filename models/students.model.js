@@ -1,4 +1,7 @@
 const mongoose = require('mongoose')
+// const {surfTablesModel} = require(ruta)?
+
+
 
 const studentsSchema = new mongoose.Schema({
   name: {
@@ -22,12 +25,18 @@ const studentsSchema = new mongoose.Schema({
   // activities: {
   //   ref: activities
   // },
-  // wetSuit: {
-  //   ref: wetsuits  
-  //},
-  // surfTable:{
-  //   ref: surfTable
-  // }
+  wetSuit: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "wetsuits" //probar
+    }
+  ] ,
+  surfTabe: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "surftables",  // probar
+    }
+  ]
 })
 
 const studentsModel = mongoose.model('students', studentsSchema);
