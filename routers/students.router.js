@@ -1,5 +1,6 @@
 const studentsRouter = require('express').Router()
-const jwt = require('jsonwebtoken')
+const {admin, auth} = require('../utils/function')
+
 const {
   getAllStudents,
   getStudent,
@@ -14,24 +15,6 @@ studentsRouter.put('/:studentId',auth, updateStudent)
 studentsRouter.delete('/:studentId',auth, deleteStudent)
 studentsRouter.post('/',auth, createStudent)
 
-
-function auth(req, res, next) {
-  /*
-    req.body
-    req.query
-    req.params
-    req.headers // req.headers.token
-  */
-
-  jwt.verify(
-    req.headers.token, 
-    process.env.SECRET, 
-    (err, insideToken) => {
-      if (err) res.json('Token not valid')
-      res.locals.id = insideToken.id
-      next()
-  })
-}
 
 
 

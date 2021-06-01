@@ -4,7 +4,14 @@ const {wetsuitsSchema} = require('./wetsuits.model')
 const {surfTablesSchema} = require('./surftables.model')
 
 const inventarySchema = new mongoose.Schema({
-  
+  date: {
+    type: Date,
+    default: Date.now()
+  },
+  description: {
+    type: String,
+    default: 'Inventary'
+  },
   wetsuits: [wetsuitsSchema],
   surftables: [surfTablesSchema]
 })
