@@ -5,7 +5,7 @@ const {seeInventary, createInventary, addWetsuit}  = require('../controllers/inv
 
 inventaryRouter.post('/', auth, admin, createInventary) 
 inventaryRouter.get('/', auth, seeInventary) 
-//inventaryRouter.post('/wetsuits', addWetsuit)
+inventaryRouter.post('/wetsuits', addWetsuit)
 
 
 module.exports = inventaryRouter

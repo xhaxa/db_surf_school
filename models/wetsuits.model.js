@@ -17,11 +17,11 @@ const wetsuitsSchema = new mongoose.Schema({
   },
   size: {
     type: String,
-    enum: ['4', '6', '8', '10', '12', '14', '16', 'xs', 's', 'm', 'l', 'xl', '2xl', '4xl'],
+    enum: ['4', '6', '8', '10', '12', '14', '16', 'xs', 's', 'm', 'l', 'xl', '2xl', '4xl', 'size'],
     default: 'size'
   },
   price: {
-    type: Number,
+    type: String,
     default: 'To consult'
   },
   students: [

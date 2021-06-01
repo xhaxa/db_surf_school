@@ -50,10 +50,41 @@ function deleteUser(req, res){
     })
 }
 
+function addStudentToUser(req, res){
+  const userId = req.params.userId
+  const refStudent = req.body._id
+  usersModel.findById(userId)
+    .then((user) => {
+    user.students.push(refStudent)
+    user.save()
+    res.json(user)
+  })
+  .catch((err) => {
+    res.json(err)
+  })
+}
+
+function seeUsersStudentList(req, res){
+  const userId = req.params.userId
+  
+  usersModel.findById(userId)
+    .then((user) => {
+    user.students
+    res.json(user.students)
+  })
+  .catch((err) => {
+    res.json(err)
+  })
+}
+
+
+
 module.exports = {
   seeYourUser,
   getAllUsers,
   seeOneUser,
   modifyUser,
-  deleteUser
+  deleteUser,
+  addStudentToUser,
+  seeUsersStudentList
 }
