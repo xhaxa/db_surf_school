@@ -10,8 +10,14 @@ const activitiesSchema = new mongoose.Schema({
     
   }, 
    price: {
-    type: Number,
+    type: String,
     required :true
   },
 })
 
+const activitiesModel = mongoose.model('activities', activitiesSchema)
+
+module.exports = {
+  activitiesModel,
+  activitiesSchema
+}

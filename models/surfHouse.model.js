@@ -13,7 +13,7 @@ const surfHouseSchema = new mongoose.Schema({
     type: Number,
   },
   price: {
-    type: Number,
+    type: String,
   },
   availability: {
     type : Boolean

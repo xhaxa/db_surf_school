@@ -16,15 +16,22 @@ const studentsSchema = new mongoose.Schema({
   passport: {
     type: String
   },
-  //surfHouse: {
-    //ref: surfHouse
-  //},
-  rental: {
-    type: String
+  surfHouse: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "surfhouse" //probar
+    }
+  ],
+  createdAt: {
+    type: Number,
+    default: Date.now()
   },
-  // activities: {
-  //   ref: activities
-  // },
+  activities: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "activities" //probar
+    }
+  ],
   wetSuit: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -41,4 +48,7 @@ const studentsSchema = new mongoose.Schema({
 
 const studentsModel = mongoose.model('students', studentsSchema);
 
-module.exports = studentsModel
+module.exports = {
+  studentsModel,
+  studentsSchema
+}

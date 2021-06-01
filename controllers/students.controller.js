@@ -1,4 +1,4 @@
-const studentsModel = require('../models/students.model');
+const {studentsModel} = require('../models/students.model')
 
 
 //listado de todos los students
@@ -15,7 +15,7 @@ function getAllStudents(req, res) {
 //ver un student
 function getStudent(req, res) {
   const studentId = req.params.studentId //??
-  studentModel.findById(studentId)
+  studentsModel.findById(studentId)
     .then((student) => res.json(student))
     .catch((err) => res.json(err))
 }
