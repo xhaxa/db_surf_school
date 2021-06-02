@@ -39,7 +39,6 @@ function createStudent(req, res) {
 function updateStudent(req, res) {
   studentsModel.findByIdAndUpdate(req.params.studentId, req.body, {new : true})
   .then((student) => {
-    console.log(student);
     res.json(student)
   })
   .catch((err) => {

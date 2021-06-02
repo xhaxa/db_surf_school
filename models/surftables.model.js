@@ -11,13 +11,15 @@ const surfTablesSchema = new mongoose.Schema({
   }, 
   brand: {
     type: String,
+    default: 'brand'
   },
   size: {
     type: String,
-    required: [true, 'The size in necessary.']
+    required: [true, 'The size in necessary.'],
+    default: 'LongBoard'
   },
   price: {
-    type: Number,
+    type: String,
     default: 'To consult'
   },
   students: [

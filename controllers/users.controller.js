@@ -8,6 +8,50 @@ function seeYourUser(req, res) {
     .catch((err) => res.json(err))
 }
 
+function seeYourStudents(req, res) {
+  const userId = res.locals.id
+  usersModel.findById(userId)
+    .populate('students')
+    .then((user) => {
+      res.json(user.students)
+    })
+    .catch((err) => {
+      res.json(err)
+    })
+}
+
+function seeOneYourStudents(req, res) {
+  const userId = res.locals.id
+  const studentId = req.params.studentId
+  usersModel.findById(userId)
+    .populate('students')
+    .then((user) => {
+      const studentR = user.students.filter(
+        (student) => String(student._id) === studentId)
+      res.json(studentR)
+    })
+    .catch((err) => {
+      res.json(err)
+    })
+}
+
+//HASTA QUE NO SE CREEN LAS CASAS NO SE PUEDE HACER. YA SIIIII 
+function seeSurfhouseOfTheirStudents(req, res) {
+  const userId = res.locals.id
+  usersModel.findById(userId)
+    .populate('students')
+    .then((user) => {
+      console.log(user);
+      res.json(user.students)
+    })
+    .catch((err) => {
+      res.json(err)
+    })
+}
+
+
+
+
 function getAllUsers(req, res) {
   usersModel.find(req.query)
     .then((users) => {
@@ -76,46 +120,18 @@ function seeUsersStudentList(req, res){
       res.json(err)
     })
 }
-/*
+
 function deleteStudentFromUser(req, res){ 
   const userId = req.params.userId
   const refStudent = req.body._id
 
   usersModel.findById(userId)
     .then((user) => {
-      user.students.filter(student => {
-      student._id !== refStudent
-      console.log(user.students);
-    })
-    user.save()
-    console.log(user.students);
-    res.json(user.students);
-    })
-    .catch((err) => {
-      res.status(404).json(err);
-    })
-}
-*/
-function deleteStudentFromUser(req, res){ 
-  const userId = req.params.userId
-  const refStudent = req.body._id
-
-  usersModel.findById(userId)
-    .then((user) => {
-      let found = -1
-      for (let i in user.students){
-        if (refStudent !== user.students[i]){
-          found = i;
-        }
-      }
-      if(found > -1){
-        user.students.splice(found, 1)
-      }
+      const index = user.students.indexOf(refStudent)
+      if (index !== -1) user.students.splice(index, 1)
       user.save()
-      console.log(user.students);
-      res.json(user.students);
+      res.json(user);
     })
-    
     .catch((err) => {
       res.status(404).json(err);
     })
@@ -123,6 +139,9 @@ function deleteStudentFromUser(req, res){
 
 module.exports = {
   seeYourUser,
+  seeYourStudents,
+  seeOneYourStudents,
+  seeSurfhouseOfTheirStudents,
   getAllUsers,
   seeOneUser,
   modifyUser,
