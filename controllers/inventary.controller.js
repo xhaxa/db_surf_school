@@ -34,18 +34,14 @@ function addWetsuit (req, res){
     .catch()
 */ 
 
-//FIND BY ID
+
 function addWetsuit(req, res) {
-  
-  inventaryModel.find()
+  inventaryModel.findById(req.params.inventaryId)
     .then((inventary) => {
-      console.log(inventary[0].wetsuits);
-      inventary[0].wetsuits.push(req.body)
-      inventary[0].save() 
-      res.json(inventary[0])
-      console.log(inventary[0].wetsuits);
+      inventary.wetsuits.push(req.body)
+      inventary.save() 
+      res.json(inventary.wetsuits)
     })
-    
     .catch((err) => {
       res.json(err)
     })
@@ -55,7 +51,6 @@ function addSurftable(req, res) {
   
   inventaryModel.find()
     .then((inventary) => {
-      console.log(inventary[0].surftables);
       inventary[0].surftables.push(req.body)
       inventary[0].save() 
       res.json(inventary[0])
