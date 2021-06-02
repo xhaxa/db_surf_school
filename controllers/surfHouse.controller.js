@@ -21,6 +21,8 @@ function deleteSurfHouse (req, res){
     })
 }
 
+
+
 module.exports = {
   createSurfHouse,
   deleteSurfHouse

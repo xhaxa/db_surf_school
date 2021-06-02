@@ -23,7 +23,7 @@ const studentsSchema = new mongoose.Schema({
     }
   ],
   createdAt: {
-    type: Number,
+    type: Date,
     default: Date.now()
   },
   activities: [

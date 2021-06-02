@@ -1,7 +1,6 @@
 const usersModel = require('../models/users.model')
 
 
-
 function seeYourUser(req, res) {
   const userId = res.locals.id
   usersModel.findById(userId)
@@ -131,4 +130,4 @@ module.exports = {
   addStudentToUser,
   seeUsersStudentList,
   deleteStudentFromUser
-}
+}    
