@@ -1,4 +1,4 @@
-const {activitiesModel} = require('../models/activities.model')
+const { activitiesModel } = require('../models/activities.model')
 
 function getAllActivities(req, res) {
   activitiesModel.find(req.query)

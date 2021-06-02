@@ -1,5 +1,5 @@
 const studentsRouter = require('express').Router()
-const {admin, auth} = require('../utils/function')
+const { admin, auth } = require('../utils/function')
 
 const {
   getAllStudents,
@@ -9,11 +9,11 @@ const {
   createStudent
  } = require('../controllers/students.controller')
 
-studentsRouter.get('/', auth, getAllStudents) // SOLO PODRÍA VERLO EL ADMIN - HAY QUE HACERLO
-studentsRouter.get('/:studentId',auth, getStudent)
-studentsRouter.put('/:studentId',auth, updateStudent)
-studentsRouter.delete('/:studentId',auth, deleteStudent)
-studentsRouter.post('/',auth, createStudent)
+studentsRouter.get('/', auth, admin, getAllStudents) 
+studentsRouter.get('/:studentId', auth, admin, getStudent)
+studentsRouter.put('/:studentId', auth, admin, updateStudent)
+studentsRouter.delete('/:studentId', auth, admin, deleteStudent)
+studentsRouter.post('/', auth, admin, createStudent)
 
 
 

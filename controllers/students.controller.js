@@ -14,7 +14,7 @@ function getAllStudents(req, res) {
 
 //ver un student
 function getStudent(req, res) {
-  const studentId = req.params.studentId //??
+  const studentId = req.params.studentId 
   studentsModel.findById(studentId)
     .then((student) => res.json(student))
     .catch((err) => res.json(err))
