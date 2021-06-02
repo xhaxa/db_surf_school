@@ -24,7 +24,7 @@ function getStudent(req, res) {
 
 
 //crear students
-function createStudent(req, res){
+function createStudent(req, res) {
   studentsModel.create(req.body) 
   .then((student) => {
     console.log(student);
@@ -35,8 +35,8 @@ function createStudent(req, res){
   })
 }
 
-//  Asignarle una actividad a un student
-function updateStudent(req, res){
+
+function updateStudent(req, res) {
   studentsModel.findByIdAndUpdate(req.params.studentId, req.body, {new : true})
   .then((student) => {
     res.json(student)
@@ -46,7 +46,7 @@ function updateStudent(req, res){
   })
 }
 
-function deleteStudent(req, res){
+function deleteStudent(req, res) {
   studentsModel.findByIdAndDelete(req.params.studentId)
     .then((student) => {
       res.json(student)
@@ -56,10 +56,43 @@ function deleteStudent(req, res){
     })
 }
 
+// asignar una surfHouse  a un student
+function addSurfHouseToStudent(req, res) {
+  const studentId = req.params.studentId
+  const refSurfHouse = req.body._id
+
+  studentsModel.findById(studentId)
+  .then((student) => {
+    student.surfHouse.push(refSurfHouse)
+    student.save()
+    res.json(student)
+  })
+  .catch((err) => {
+    res.json(err)
+  })
+}
+
+// ver surfHouse de un student
+function getSurfHouseOfStudent (req,res){
+  const studentId = req.params.studentId
+  
+  studentsModel.findById(studentId)
+  .populate('surfHouse')
+  .then((student) => {
+    res.json(student.surfHouse)
+  })
+  .catch((err) => {
+    res.json(err)
+  })
+}
+
+
 module.exports = {
  getAllStudents,
  getStudent,
  updateStudent,
  deleteStudent,
- createStudent
+ createStudent,
+ addSurfHouseToStudent,
+ getSurfHouseOfStudent
 }

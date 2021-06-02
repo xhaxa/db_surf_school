@@ -8,7 +8,7 @@ const {
 } = require('../controllers/surfHouse.controller')
 
 surfHousesRouter.post('/', auth, admin, createSurfHouse)
-surfHousesRouter.delete('/:surfhouseId', auth, admin, deleteSurfHouse)
+surfHousesRouter.delete('/:surfHouseId', auth, admin, deleteSurfHouse)
 
 
 
