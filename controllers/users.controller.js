@@ -9,6 +9,50 @@ function seeYourUser(req, res) {
     .catch((err) => res.json(err))
 }
 
+function seeYourStudents(req, res) {
+  const userId = res.locals.id
+  usersModel.findById(userId)
+    .populate('students')
+    .then((user) => {
+      res.json(user.students)
+    })
+    .catch((err) => {
+      res.json(err)
+    })
+}
+
+function seeOneYourStudents(req, res) {
+  const userId = res.locals.id
+  const studentId = req.params.studentId
+  usersModel.findById(userId)
+    .populate('students')
+    .then((user) => {
+      const studentR = user.students.filter(
+        (student) => student._id == studentId)// hay que parsear para que sea igualdad estricta
+      res.json(studentR)
+    })
+    .catch((err) => {
+      res.json(err)
+    })
+}
+
+//HASTA QUE NO SE CREEN LAS CASAS NO SE PUEDE HACER.
+function seeSurfhouseOfTheirStudents(req, res) {
+  const userId = res.locals.id
+  usersModel.findById(userId)
+    .populate('students')
+    .then((user) => {
+      console.log(user);
+      res.json(user.students)
+    })
+    .catch((err) => {
+      res.json(err)
+    })
+}
+
+
+
+
 function getAllUsers(req, res) {
   usersModel.find(req.query)
     .then((users) => {
@@ -124,6 +168,9 @@ function deleteStudentFromUser(req, res){
 
 module.exports = {
   seeYourUser,
+  seeYourStudents,
+  seeOneYourStudents,
+  seeSurfhouseOfTheirStudents,
   getAllUsers,
   seeOneUser,
   modifyUser,
