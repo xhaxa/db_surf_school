@@ -28,7 +28,7 @@ function seeOneYourStudents(req, res) {
     .populate('students')
     .then((user) => {
       const studentR = user.students.filter(
-        (student) => student._id == studentId)// hay que parsear para que sea igualdad estricta
+        (student) => String(student._id) === studentId)
       res.json(studentR)
     })
     .catch((err) => {
@@ -36,7 +36,7 @@ function seeOneYourStudents(req, res) {
     })
 }
 
-//HASTA QUE NO SE CREEN LAS CASAS NO SE PUEDE HACER.
+//HASTA QUE NO SE CREEN LAS CASAS NO SE PUEDE HACER. YA SIIIII 
 function seeSurfhouseOfTheirStudents(req, res) {
   const userId = res.locals.id
   usersModel.findById(userId)
@@ -121,46 +121,18 @@ function seeUsersStudentList(req, res){
       res.json(err)
     })
 }
-/*
+
 function deleteStudentFromUser(req, res){ 
   const userId = req.params.userId
   const refStudent = req.body._id
 
   usersModel.findById(userId)
     .then((user) => {
-      user.students.filter(student => {
-      student._id !== refStudent
-      console.log(user.students);
-    })
-    user.save()
-    console.log(user.students);
-    res.json(user.students);
-    })
-    .catch((err) => {
-      res.status(404).json(err);
-    })
-}
-*/
-function deleteStudentFromUser(req, res){ 
-  const userId = req.params.userId
-  const refStudent = req.body._id
-
-  usersModel.findById(userId)
-    .then((user) => {
-      let found = -1
-      for (let i in user.students){
-        if (refStudent !== user.students[i]){
-          found = i;
-        }
-      }
-      if(found > -1){
-        user.students.splice(found, 1)
-      }
+      const index = user.students.indexOf(refStudent)
+      if (index !== -1) user.students.splice(index, 1)
       user.save()
-      console.log(user.students);
-      res.json(user.students);
+      res.json(user);
     })
-    
     .catch((err) => {
       res.status(404).json(err);
     })

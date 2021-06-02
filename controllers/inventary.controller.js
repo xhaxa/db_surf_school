@@ -34,6 +34,7 @@ function addWetsuit (req, res){
     .catch()
 */ 
 
+//FIND BY ID
 function addWetsuit(req, res) {
   
   inventaryModel.find()
@@ -114,7 +115,9 @@ function updateWetsuit(req, res) {
   })
 }
 */
-/*
+/*3
+
+DELETEEEEE
 inventaryModel.findByIdAndDelete(req.params.movieId)
 .then((movie) => {
   res.json(movie);
