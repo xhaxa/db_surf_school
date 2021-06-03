@@ -15,7 +15,6 @@ function filterAllStudents(req, res) {
     })
 }
 
-//listado de todos los students
 function getAllStudents(req, res) {
   studentsModel.find(req.query)
     .then((students) => {
@@ -26,7 +25,7 @@ function getAllStudents(req, res) {
     })
 }
 
-//ver un student
+
 function getStudent(req, res) {
   const studentId = req.params.studentId 
   studentsModel.findById(studentId)
@@ -35,7 +34,7 @@ function getStudent(req, res) {
 }
 
 
-//crear students
+
 function createStudent(req, res) {
   studentsModel.create(req.body) 
   .then((student) => {
@@ -68,7 +67,6 @@ function deleteStudent(req, res) {
     })
 }
 
-// asignar una surfHouse  a un student
 function addSurfHouseToStudent(req, res) {
   const studentId = req.params.studentId
   const refSurfHouse = req.body._id
@@ -84,7 +82,6 @@ function addSurfHouseToStudent(req, res) {
   })
 }
 
-// ver surfHouse de un student
 function getSurfHouseOfStudent (req,res){
   const studentId = req.params.studentId
   
