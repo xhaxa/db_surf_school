@@ -12,10 +12,12 @@ const {
 
 
 
-activitiesRouter.get('/', auth, getAllActivities)
-activitiesRouter.get('/me/filter', auth, filterActivities)
-activitiesRouter.get('/:activityId', auth, getOneActivity)
+activitiesRouter.get('/', getAllActivities)
+activitiesRouter.get('/me/filter', filterActivities)
+
+
 activitiesRouter.post('/', auth, admin, createActivity)
+activitiesRouter.get('/:activityId', getOneActivity)
 activitiesRouter.delete('/:activityId', auth, admin, deleteActivity)
 
 
