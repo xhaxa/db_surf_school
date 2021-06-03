@@ -1,5 +1,17 @@
 const { activitiesModel } = require('../models/activities.model')
 
+
+function filterActivities(req, res) {
+  activitiesModel.find(req.query.description)
+    .then((activities) => {
+      res.json(activities)
+    })
+    .catch((err) => {
+      res.json(err)
+    })
+}
+
+
 function getAllActivities(req, res) {
   activitiesModel.find(req.query)
     .then((activities) => {
@@ -43,6 +55,7 @@ function deleteActivity(req, res){
 }
 
 module.exports = {
+  filterActivities,
   getAllActivities,
   getOneActivity,
   createActivity,

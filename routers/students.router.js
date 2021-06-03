@@ -2,6 +2,7 @@ const studentsRouter = require('express').Router()
 const { admin, auth } = require('../utils/function')
 
 const {
+  filterAllStudents,
   getAllStudents,
   getStudent,
   updateStudent,
@@ -10,6 +11,8 @@ const {
   addSurfHouseToStudent,getSurfHouseOfStudent
  } = require('../controllers/students.controller')
 
+
+studentsRouter.get('/filter',auth, admin, filterAllStudents )
 studentsRouter.get('/', auth, admin, getAllStudents) 
 studentsRouter.get('/:studentId', auth, admin, getStudent)
 studentsRouter.put('/:studentId', auth, admin, updateStudent)

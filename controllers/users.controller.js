@@ -50,8 +50,6 @@ function seeSurfhouseOfTheirStudents(req, res) {
 }
 
 
-
-
 function getAllUsers(req, res) {
   usersModel.find(req.query)
     .then((users) => {
