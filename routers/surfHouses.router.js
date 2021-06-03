@@ -11,5 +11,4 @@ surfHousesRouter.post('/', auth, admin, createSurfHouse)
 surfHousesRouter.delete('/:surfHouseId', auth, admin, deleteSurfHouse)
 
 
-
 module.exports = surfHousesRouter

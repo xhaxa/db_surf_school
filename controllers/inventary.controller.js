@@ -65,6 +65,52 @@ function addWetsuitToStudent(req, res){
   })
 }
 
+function addSurftableToStudent(req, res){
+  const inventaryId = req.params.inventaryId
+  const refStudent = req.body._id
+
+  inventaryModel.findById(inventaryId)
+  .then((inventary) => {
+    const surftableId = inventary.surftables.id(req.params.surftableId)
+    
+    surftableId.students.push(refStudent)
+    inventary.save()
+    res.json(inventary.surftables)
+  })
+  .catch((err) => {
+    res.json(err)
+  })
+}
+
+function seeStudentsWetsuit(req, res){
+  const inventaryId = req.params.inventaryId
+  
+  inventaryModel.findById(inventaryId)
+  .populate('students')
+  .then((inventary) => {
+    const wetsuitId = inventary.wetsuits.id(req.params.wetsuitId)
+    const refStudent = wetsuitId.students
+    res.json(refStudent)
+  })
+  .catch((err) => {
+    res.json(err)
+  })
+}
+
+function seeStudentsSurftable(req, res){
+  const inventaryId = req.params.inventaryId
+  
+  inventaryModel.findById(inventaryId)
+  .populate('students')
+  .then((inventary) => {
+    const surftableId = inventary.surftables.id(req.params.surftableId)
+    const refStudent = surftableId.students
+    res.json(refStudent)
+  })
+  .catch((err) => {
+    res.json(err)
+  })
+}
 
 function seeWetsuits(req, res) {
   inventaryModel.findById(req.params.inventaryId)
@@ -128,7 +174,10 @@ module.exports = {
   addSurftable,
   seeSurftables,
   deleteSurftable,
-  addWetsuitToStudent
+  addWetsuitToStudent,
+  addSurftableToStudent,
+  seeStudentsWetsuit,
+  seeStudentsSurftable
 }
 
 

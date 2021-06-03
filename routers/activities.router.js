@@ -10,8 +10,8 @@ const {
 } = require('../controllers/activities.controller')
 
 activitiesRouter.get('/', getAllActivities)
-activitiesRouter.get('/:activityId', getOneActivity)
 activitiesRouter.post('/', auth, admin, createActivity)
+activitiesRouter.get('/:activityId', getOneActivity)
 activitiesRouter.delete('/:activityId', auth, admin, deleteActivity)
 
 

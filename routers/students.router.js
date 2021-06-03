@@ -11,14 +11,12 @@ const {
  } = require('../controllers/students.controller')
 
 studentsRouter.get('/', auth, admin, getAllStudents) 
+studentsRouter.post('/', auth, admin, createStudent)
 studentsRouter.get('/:studentId', auth, admin, getStudent)
 studentsRouter.put('/:studentId', auth, admin, updateStudent)
 studentsRouter.delete('/:studentId', auth, admin, deleteStudent)
-studentsRouter.post('/', auth, admin, createStudent)
-studentsRouter.put('/:studentId/surfhouses/add', auth, admin, addSurfHouseToStudent)
 studentsRouter.get('/:studentId/surfhouse', auth, admin, getSurfHouseOfStudent)
-
-
+studentsRouter.put('/:studentId/surfhouses/add', auth, admin, addSurfHouseToStudent)
 
 
 module.exports = studentsRouter
