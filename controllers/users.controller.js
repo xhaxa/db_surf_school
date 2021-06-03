@@ -35,25 +35,11 @@ function seeOneYourStudents(req, res) {
     })
 }
 
-//HASTA QUE NO SE CREEN LAS CASAS NO SE PUEDE HACER. YA SIIIII 
-function seeSurfhouseOfTheirStudents(req, res) {
-  const userId = res.locals.id
-  usersModel.findById(userId)
-    .populate('students')
-    .then((user) => {
-      console.log(user);
-      res.json(user.students)
-    })
-    .catch((err) => {
-      res.json(err)
-    })
-}
-
-
 
 
 function getAllUsers(req, res) {
   usersModel.find(req.query)
+    .populate('students')
     .then((users) => {
       res.json(users)
     })
@@ -141,7 +127,6 @@ module.exports = {
   seeYourUser,
   seeYourStudents,
   seeOneYourStudents,
-  seeSurfhouseOfTheirStudents,
   getAllUsers,
   seeOneUser,
   modifyUser,
