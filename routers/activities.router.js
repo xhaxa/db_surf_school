@@ -3,13 +3,18 @@ const { auth, admin } = require('../utils/function')
 
 
 const {
+  filterActivities,
   getAllActivities,
   getOneActivity,
   deleteActivity,
   createActivity
 } = require('../controllers/activities.controller')
 
-activitiesRouter.get('/', getAllActivities)
+
+
+activitiesRouter.get('/', auth, getAllActivities)
+activitiesRouter.get('/me/filter', auth, filterActivities)
+activitiesRouter.get('/:activityId', auth, getOneActivity)
 activitiesRouter.post('/', auth, admin, createActivity)
 activitiesRouter.get('/:activityId', getOneActivity)
 activitiesRouter.delete('/:activityId', auth, admin, deleteActivity)

@@ -1,5 +1,19 @@
 const {studentsModel} = require('../models/students.model')
 
+function filterAllStudents(req, res) {
+  studentsModel.find({ $or: [ 
+    { passport : req.query.passport },//revisar si es exacto
+    { name : {'$regex': req.query.name, '$options' : 'i' }}//revisar la expresion regular 
+
+    //add to router 
+    ]})
+    .then((students) => {
+      res.json(students)
+    })
+    .catch((err) => {
+      res.json(err)
+    })
+}
 
 function getAllStudents(req, res) {
   studentsModel.find(req.query)
@@ -83,6 +97,7 @@ function getSurfHouseOfStudent (req,res){
 
 
 module.exports = {
+ filterAllStudents,
  getAllStudents,
  getStudent,
  updateStudent,
