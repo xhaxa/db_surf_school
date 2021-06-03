@@ -1,16 +1,19 @@
 const inventaryRouter = require('express').Router()
 const {admin, auth} = require('../utils/function')
-const {seeInventary, createInventary, addWetsuit, seeWetsuits, updateWetsuit, addSurftable, seeSurftables}  = require('../controllers/inventary.controller')
+const {seeInventary, createInventary, addWetsuit, seeWetsuits, addWetsuitToStudent, deleteWetsuit, addSurftable, seeSurftables, deleteSurftable}  = require('../controllers/inventary.controller')
 
 
-inventaryRouter.post('/', auth, admin, createInventary) 
+
 inventaryRouter.get('/', auth, seeInventary) 
+inventaryRouter.post('/', auth, admin, createInventary) 
 inventaryRouter.post('/:inventaryId/wetsuits', auth, addWetsuit)
-
-//inventaryRouter.put('/wetsuits/:wetsuitId', auth, updateWetsuit)
-
-inventaryRouter.get('/wetsuits', auth, seeWetsuits)
 inventaryRouter.post('/:inventaryId/surftables', auth, addSurftable)
-inventaryRouter.get('/surftables', auth, seeSurftables)
+inventaryRouter.get('/:inventaryId/wetsuits', auth, seeWetsuits)
+inventaryRouter.get('/:inventaryId/surftables', auth, seeSurftables)
+
+inventaryRouter.put('/:inventaryId/wetsuits/:wetsuitId', auth, addWetsuitToStudent)
+
+inventaryRouter.delete('/:inventaryId/wetsuits/:wetsuitId', auth, deleteWetsuit)
+inventaryRouter.delete('/:inventaryId/surftables/:surftableId', auth, deleteSurftable)
 
 module.exports = inventaryRouter

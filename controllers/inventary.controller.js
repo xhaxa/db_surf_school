@@ -21,19 +21,6 @@ function seeInventary(req, res) {
   })
 }
 
-/*
-
-o hacer un post pero con la ruta api/inventary/:inventaryId/wetsuis 
-
- o hacer un //PUT
-function addWetsuit (req, res){
-//deberia ser con findByIdAndUpdate (req.params.id, req.bod, {new : true}) y sería así 
-/*
-  Movies.findByIdAndUpdate(req.params.movieId, req.body, {new : true})
-    .then()
-    .catch()
-*/ 
-
 
 function addWetsuit(req, res) {
   inventaryModel.findById(req.params.inventaryId)
@@ -49,12 +36,11 @@ function addWetsuit(req, res) {
 
 function addSurftable(req, res) {
   
-  inventaryModel.find()
+  inventaryModel.findById(req.params.inventaryId)
     .then((inventary) => {
-      inventary[0].surftables.push(req.body)
-      inventary[0].save() 
-      res.json(inventary[0])
-      console.log(inventary[0].surftables);
+      inventary.surftables.push(req.body)
+      inventary.save() 
+      res.json(inventary.surftables)
     })
     
     .catch((err) => {
@@ -62,10 +48,28 @@ function addSurftable(req, res) {
     })
 }
 
-function seeWetsuits(req, res) {
-  inventaryModel.find()
+function addWetsuitToStudent(req, res){
+  const inventaryId = req.params.inventaryId
+  const refStudent = req.body._id
+
+  inventaryModel.findById(inventaryId)
   .then((inventary) => {
-    res.json(inventary[0].wetsuits)
+    const wetsuitId = inventary.wetsuits.id(req.params.wetsuitId)
+    
+    wetsuitId.students.push(refStudent)
+    inventary.save()
+    res.json(inventary.wetsuits)
+  })
+  .catch((err) => {
+    res.json(err)
+  })
+}
+
+
+function seeWetsuits(req, res) {
+  inventaryModel.findById(req.params.inventaryId)
+  .then((inventary) => {
+    res.json(inventary.wetsuits)
   })
   .catch((err) => {
     res.json(err)
@@ -73,64 +77,58 @@ function seeWetsuits(req, res) {
 }
 
 function seeSurftables(req, res) {
-  inventaryModel.find()
+  inventaryModel.findById(req.params.inventaryId)
   .then((inventary) => {
-    res.json(inventary[0].surftables)
+    res.json(inventary.surftables)
   })
   .catch((err) => {
     res.json(err)
   })
 }
-/*
+
+
 function deleteWetsuit(req, res){
-  inventaryModel.find()
-  .then((wetsuit) => {
-
-    res.json(inventary[0].wetsuits)
-  })
-  .catch((err) => {
-    res.json(err)
-  })
-}
-*/
-/*
-function updateWetsuit(req, res) {
-  const wetsuitUpdate = req.params.wetsuitId
-  inventaryModel.find()
+  const inventaryId = req.params.inventaryId
+  
+  inventaryModel.findById(inventaryId)
   .then((inventary) => {
-    const wetsuitR = inventary[0].wetsuits.filter(
-      wetsuit => wetsuit._id === wetsuitUpdate
-    )
-    wetsuitR =
-    
-    res.json(inventary[0].wetsuit)
+    const wetsuitId = inventary.wetsuits.id(req.params.wetsuitId)
+    wetsuitId.remove()
+    inventary.save()
+    res.json(inventary.wetsuits)
   })
   .catch((err) => {
     res.json(err)
   })
 }
-*/
-/*3
 
-DELETEEEEE
-inventaryModel.findByIdAndDelete(req.params.movieId)
-.then((movie) => {
-  res.json(movie);
-})
-.catch((err) => {
-  res.status(404).json(err);
-})
 
-*/
+function deleteSurftable(req, res){
+  const inventaryId = req.params.inventaryId
+  
+  inventaryModel.findById(inventaryId)
+  .then((inventary) => {
+    const surftableId = inventary.surftables.id(req.params.surftableId)
+    surftableId.remove()
+    inventary.save()
+    res.json(inventary.surftables)
+  })
+  .catch((err) => {
+    res.json(err)
+  })
+}
+
 
 module.exports = {
   seeInventary,
   createInventary,
   addWetsuit,
   seeWetsuits,
-  //updateWetsuit,
+  deleteWetsuit,
   addSurftable,
-  seeSurftables
+  seeSurftables,
+  deleteSurftable,
+  addWetsuitToStudent
 }
 
 

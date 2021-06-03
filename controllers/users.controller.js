@@ -52,6 +52,7 @@ function seeSurfhouseOfTheirStudents(req, res) {
 
 function getAllUsers(req, res) {
   usersModel.find(req.query)
+    .populate('students')
     .then((users) => {
       res.json(users)
     })
@@ -139,7 +140,6 @@ module.exports = {
   seeYourUser,
   seeYourStudents,
   seeOneYourStudents,
-  seeSurfhouseOfTheirStudents,
   getAllUsers,
   seeOneUser,
   modifyUser,

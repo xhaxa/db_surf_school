@@ -2,7 +2,7 @@ const { activitiesModel } = require('../models/activities.model')
 
 
 function filterActivities(req, res) {
-  activitiesModel.find(req.query.description)
+  activitiesModel.find({ description: { $regex: req.query.description , $options: 'i' } })
     .then((activities) => {
       res.json(activities)
     })

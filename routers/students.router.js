@@ -8,7 +8,8 @@ const {
   updateStudent,
   deleteStudent,
   createStudent,
-  addSurfHouseToStudent,getSurfHouseOfStudent
+  addSurfHouseToStudent,
+  getSurfHouseOfStudent
  } = require('../controllers/students.controller')
 
 
