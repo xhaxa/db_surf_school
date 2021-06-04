@@ -12,7 +12,7 @@ const wetsuitsSchema = new mongoose.Schema({
   }, 
   brand: {
     type: String,
-    enum: ['OneiLl', 'Rip Curl', 'Excel', 'No-brand'],
+    enum: ['Oneill', 'Rip Curl', 'Excel', 'No-brand'],
     default: 'No-brand'
   },
   size: {
