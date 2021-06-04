@@ -13,7 +13,7 @@ const {
 
 
 activitiesRouter.get('/', getAllActivities)
-activitiesRouter.get('/me/filter', filterActivities)
+activitiesRouter.get('/filter', filterActivities)
 
 
 activitiesRouter.post('/', auth, admin, createActivity)
